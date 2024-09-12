@@ -17,7 +17,7 @@ class Display:
 
   display/PixelDisplay
 
-  constructor:
+  constructor --inverted=false:
     bus := Bus --sda=SDA --scl=SCL --frequency=FREQUENCY
 
     devices := bus.scan
@@ -27,7 +27,7 @@ class Display:
     device := bus.device Ssd1306.I2C-ADDRESS
     driver := Ssd1306.i2c device
 
-    display = PixelDisplay.two-color driver
+    display = PixelDisplay.two-color driver --inverted=inverted
     display.background = BLACK
 
   add-text text --x=8 --y=16:

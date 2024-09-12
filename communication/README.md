@@ -4,7 +4,7 @@ This package provides a simple way to communicate with a microcontroller over a 
 
 ## Setup
 
-To use the library you must install its dependencies (found in [`./package.lock`](./package.lock)).
+To use the package you must install its dependencies (found in [`./package.lock`](./package.lock)).
 
 ```bash
 jag pkg install
