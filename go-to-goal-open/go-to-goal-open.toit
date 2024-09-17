@@ -45,7 +45,7 @@ class ForwardMover implements Communicator:
 main:
 
     forward-mover := ForwardMover
-    comm := WsCommunication forward-mover --heartbeat-ms=1000
+    comm := WsCommunication forward-mover --heartbeat-ms=1000 // change this
     forward-time := 5_000
 
     while true:
@@ -60,4 +60,6 @@ main:
         else:
           sleep --ms=1000
       // use webform to send packets for heartbeats
+      // to make it run without cable: leave it plugged in first, wscat, and then unplug, and type to run
+
 
