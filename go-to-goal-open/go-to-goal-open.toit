@@ -33,7 +33,7 @@ class ForwardMover implements Communicator:
     print "Enabling"
     state = Communicator.ENABLED
     led.on
-    motors.set-speed-forward 0.2
+    motors.set-motors-speed-factor 0.2
 
   disable:
     if state == Communicator.DISABLED: return
@@ -45,7 +45,7 @@ class ForwardMover implements Communicator:
 main:
 
     forward-mover := ForwardMover
-    comm := WsCommunication forward-mover --heartbeat-ms=1000 // change this
+    comm := WsCommunication forward-mover --heartbeat-ms=6_0000 // change this
     forward-time := 5_000
 
     while true:
@@ -53,7 +53,7 @@ main:
         if forward-mover.is-enabled:
 
           // motors might turn off if forward-mover is disabled
-          forward-mover.motors.set-speed-forward 0.5
+          forward-mover.motors.set-motors-speed-factor 0.5
           sleep --ms=forward-time
           //forward-mover.motors.stop
           break
