@@ -62,8 +62,8 @@ class MotorControl:
   left-controller/ProportionalControl := ProportionalControl LEFT-KP MAX-SPEED-STEP MAX-SPEED
   right-controller/ProportionalControl := ProportionalControl RIGHT-KP MAX-SPEED-STEP MAX-SPEED
 
-  left-time/int
-  right-time/int
+  left-time/int := 0
+  right-time/int := 0
 
   constructor .motors:
     left-time = Time.monotonic-us
@@ -83,6 +83,9 @@ class MotorControl:
     right-speed := right-rot-per-s * WHEEL-CIRCUMFERENCE
     right-speed-factor := right-controller.compute-speed-factor desired-speed right-speed
     motors.right-motor.set-speed-factor right-speed-factor
+    
+    left-time = now
+    right-time = now
     
     // left-measured-speed := motors.left-encoder.get-rotation-rate 
 
