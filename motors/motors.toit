@@ -115,3 +115,9 @@ class Motors:
 
     left-encoder.close
     right-encoder.close
+
+// main:
+//   l-encoder/Encoder := Encoder LEFT-ENCODER-PIN LEFT-ENCODER-CONTROL-PIN
+//   r-encoder/Encoder := Encoder RIGHT-ENCODER-PIN RIGHT-ENCODER-CONTROL-PIN
+
+//   l-encoder.get-rotation-rate 1_000
