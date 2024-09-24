@@ -1,4 +1,4 @@
-import .display
+import ..display
 
 main:
   display := Display
