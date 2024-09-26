@@ -11,7 +11,8 @@ class HeartbeatHandler implements Communicator:
     led/Led := Led
     motors/Motors := Motors
 
-    constructor: HeartbeatHandler
+    constructor:
+      halt
 
     halt:
         led.off
@@ -91,22 +92,34 @@ class MotorControl:
 
 main:
     heartbeat-handler := HeartbeatHandler
-    comm := WsCommunication heartbeat-handler --heartbeat-ms=1000
+    comm := WsCommunication heartbeat-handler --heartbeat-ms=5_000
 
     while not heartbeat-handler.is-enabled:
-        sleep --ms=1000
+        sleep --ms=2000
+    if heartbeat-handler.is-enabled:
+      motor-control := MotorControl heartbeat-handler.motors
+      motor-speed := 0.20
 
-    motor-control := MotorControl heartbeat-handler.motors
-    motor-speed := 0.20
+      duration-ms := 10_000
+      control-update-ms := 100
+      time-ms := 0
 
-    duration-ms := 10_000
-    control-update-ms := 100
-    time-ms := 0
+      //run with set speed function
 
-    while time-ms < duration-ms:
-      motor-control.update-forward-speed motor-speed
-      sleep --ms=control-update-ms
-      time-ms += control-update-ms
+    //   left-motor := Motor LEFT-MOTOR-DIR-PIN LEFT-MOTOR-PWM-PIN
+    //   left-encoder := Encoder LEFT-ENCODER-PIN LEFT-ENCODER-CONTROL-PIN
     
+    //   right-motor := Motor RIGHT-MOTOR-DIR-PIN RIGHT-MOTOR-PWM-PIN
+    //   right-encoder := Encoder RIGHT-ENCODER-PIN RIGHT-ENCODER-CONTROL-PIN
+    
+    // instead set them to the speeds we want
+    //   right-motor.set-pwm-duty-factor 1.0
+    //   left-motor.set-pwm-duty-factor 1.0
+
+      while time-ms < duration-ms:
+        motor-control.update-forward-speed motor-speed
+        sleep --ms=control-update-ms
+        time-ms += control-update-ms
+      
     heartbeat-handler.motors.stop
     print "Done"

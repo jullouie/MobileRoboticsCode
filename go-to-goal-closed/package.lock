@@ -1,11 +1,7 @@
 sdk: ^2.0.0-alpha.145
 prefixes:
-  communication: communication
+  http: pkg-http
 packages:
-  communication:
-    path: ../communication
-    prefixes:
-      http: pkg-http
   pkg-http:
     url: github.com/toitlang/pkg-http
     name: http

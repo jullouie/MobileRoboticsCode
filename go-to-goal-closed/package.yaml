@@ -1,3 +1,4 @@
 dependencies:
-  communication:
-    path: ..communication
+  http:
+    url: github.com/toitlang/pkg-http
+    version: ^2.7.2
