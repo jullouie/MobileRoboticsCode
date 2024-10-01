@@ -96,30 +96,39 @@ main:
 
     while not heartbeat-handler.is-enabled:
         sleep --ms=2000
-    if heartbeat-handler.is-enabled:
-      motor-control := MotorControl heartbeat-handler.motors
-      motor-speed := 0.20
-
-      duration-ms := 10_000
-      control-update-ms := 100
-      time-ms := 0
-
-      //run with set speed function
-
-    //   left-motor := Motor LEFT-MOTOR-DIR-PIN LEFT-MOTOR-PWM-PIN
-    //   left-encoder := Encoder LEFT-ENCODER-PIN LEFT-ENCODER-CONTROL-PIN
     
-    //   right-motor := Motor RIGHT-MOTOR-DIR-PIN RIGHT-MOTOR-PWM-PIN
-    //   right-encoder := Encoder RIGHT-ENCODER-PIN RIGHT-ENCODER-CONTROL-PIN
-    
-    // instead set them to the speeds we want
-    //   right-motor.set-pwm-duty-factor 1.0
-    //   left-motor.set-pwm-duty-factor 1.0
+    while true:
+      while true:
+        if heartbeat-handler.is-enabled:
+          motor-control := MotorControl heartbeat-handler.motors
+          motor-control.motors.left-motor.set-pwm-duty-factor 1.0
+          motor-control.motors.right-motor.set-pwm-duty-factor 0.95
+          motor-speed := 0.20
 
-      while time-ms < duration-ms:
-        motor-control.update-forward-speed motor-speed
-        sleep --ms=control-update-ms
-        time-ms += control-update-ms
-      
-    heartbeat-handler.motors.stop
+          duration-ms := 10_000
+          control-update-ms := 100
+          time-ms := 0
+
+          //run with set speed function
+
+        //   left-motor := Motor LEFT-MOTOR-DIR-PIN LEFT-MOTOR-PWM-PIN
+        //   left-encoder := Encoder LEFT-ENCODER-PIN LEFT-ENCODER-CONTROL-PIN
+        
+        //   right-motor := Motor RIGHT-MOTOR-DIR-PIN RIGHT-MOTOR-PWM-PIN
+        //   right-encoder := Encoder RIGHT-ENCODER-PIN RIGHT-ENCODER-CONTROL-PIN
+        
+        // instead set them to the speeds we want
+        //   right-motor.set-pwm-duty-factor 1.0
+        //   left-motor.set-pwm-duty-factor 1.0
+          sleep --ms=8_750
+
+      //   while time-ms < duration-ms:
+      //     // motor-control.update-forward-speed motor-speed
+      //     sleep --ms=control-update-ms
+      //     time-ms += control-update-ms
+        
+          heartbeat-handler.motors.stop
+          break
+        else:
+          sleep --ms=1000
     print "Done"

@@ -105,6 +105,12 @@ class Motors:
     left-motor.set-speed-factor speed-factor
     right-motor.set-speed-factor speed-factor
   
+  set-motors-speed-factor-left speed-factor/float:
+    left-motor.set-speed-factor speed-factor
+
+  set-motors-speed-factor-right speed-factor/float:  
+    right-motor.set-speed-factor speed-factor
+  
 //  break apart set-motors-speed-factor into left and right
 
   stop:

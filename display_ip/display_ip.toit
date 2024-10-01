@@ -1,6 +1,7 @@
 import ..display
 import ..communication
 import ..led
+import ..motors
 
 class LedBlinker implements Communicator:
   led := Led
@@ -41,3 +42,11 @@ main:
 
     led-blinker := LedBlinker
     comm := WsCommunication led-blinker --heartbeat-ms=1000
+    motors/Motors := Motors
+
+    while true:
+      if led-blinker.is-enabled:
+        motors.set-motors-speed-factor 0.25
+      else: 
+        motors.stop
+    

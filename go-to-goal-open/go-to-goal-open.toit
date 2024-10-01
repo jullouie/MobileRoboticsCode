@@ -45,7 +45,7 @@ class ForwardMover implements Communicator:
 main:
 
     forward-mover := ForwardMover
-    comm := WsCommunication forward-mover --heartbeat-ms=10_000 // change this
+    comm := WsCommunication forward-mover --heartbeat-ms=3_000 // change this
     forward-time := 5_000
 
     while true:
@@ -53,7 +53,13 @@ main:
         if forward-mover.is-enabled:
 
           // motors might turn off if forward-mover is disabled
-          forward-mover.motors.set-motors-speed-factor 0.5
+
+          // turns left so slowed down right motors
+        //   forward-mover.motors.set-motors-speed-factor-left 1.0
+        //   forward-mover.motors.set-motors-speed-factor-right 0.9
+          
+          
+          forward-mover.motors.set-motors-speed-factor 1.0
           sleep --ms=forward-time
           forward-mover.motors.stop
           break
